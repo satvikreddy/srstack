@@ -1,0 +1,47 @@
+---
+title: Convex
+---
+
+## Create new convex project
+
+```bash
+npx convex dev --once --configure=new
+```
+
+- Creates new convex project
+- creates convex/ folder
+- creates .env.local with CONVEX_DEPLOYMENT, VITE_CONVEX_URL
+
+## srstack add-convex
+
+```bash
+npx srstack@latest add-convex
+```
+- Adds sample schema and route
+- Adds reusable fn middleware
+
+## wrap __root.tsx
+
+```tsx
+ <body>
+        <AppConvexProvider>
+          <AppLayout>{children}</AppLayout>
+          <Toaster />
+        </AppConvexProvider>
+        <TanStackDevtools
+```
+
+## File Storage
+
+https://docs.convex.dev/file-storage
+
+## Vercel deployment
+
+1. override build command
+```
+npx convex deploy --cmd 'npm run build'
+```
+
+2. Settings -> URL & Deploy key -> Deploy keys | Create
+- Paste in vercel env var CONVEX_DEPLOY_KEY
+- also set VITE_CONVEX_URL with prod
