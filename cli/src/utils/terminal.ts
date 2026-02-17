@@ -24,3 +24,18 @@ export function installShadcnComponents(components: string[]): void {
     throw new Error("shadcn add failed");
   }
 }
+
+/**
+ * Runs the format script from package.json (e.g. "prettier --write .").
+ * Uses npm run format; skips silently if the script does not exist.
+ */
+export function runFormat(): void {
+  console.log("Running: npm run format");
+  const result = spawnSync("npm", ["run", "format"], {
+    stdio: "inherit",
+    shell: true,
+  });
+  if (result.status !== 0) {
+    console.warn("npm run format failed or format script not found (non-fatal)");
+  }
+}

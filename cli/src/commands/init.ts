@@ -1,6 +1,7 @@
 import type { Command } from "commander";
 import { addFromTanstackStack } from "../utils/github.js";
-import { installShadcnComponents } from "../utils/terminal.js";
+import { ensureFormatScript } from "../utils/packageJson.js";
+import { installShadcnComponents, runFormat } from "../utils/terminal.js";
 
 export function registerInit(program: Command): void {
   program
@@ -15,7 +16,11 @@ export function registerInit(program: Command): void {
         },
       ]);
 
+      await ensureFormatScript();
+
       installShadcnComponents(["sidebar", "sonner"]);
+
+      runFormat();
 
       console.log("Done.");
     });
