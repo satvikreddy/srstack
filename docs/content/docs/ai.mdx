@@ -1,0 +1,34 @@
+---
+title: AI
+---
+
+## srstack add-ai
+
+```bash
+npx srstack@latest add-ai
+```
+
+## Prompt
+
+This lets us view all AI messages and tool calls in the devtools.
+
+```markdown
+### in __root.tsx
+
+Add aiDevtoolsPlugin() from '@tanstack/react-ai-devtools'
+
+<TanStackDevtools
+    plugins={[
+        ...
+        aiDevtoolsPlugin(),
+    ]}
+/>
+```
+
+## Env
+
+Set based on which provider you want.
+
+```.env
+OPENAI_API_KEY=
+```

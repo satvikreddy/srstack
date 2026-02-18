@@ -12,6 +12,18 @@ export function installDeps(deps: string[]): void {
   }
 }
 
+export function installDevDeps(deps: string[]): void {
+  if (deps.length === 0) return;
+  console.log(`Running: pnpm add -D ${deps.join(" ")}`);
+  const result = spawnSync("pnpm", ["add", "-D", ...deps], {
+    stdio: "inherit",
+    shell: true,
+  });
+  if (result.status !== 0) {
+    throw new Error("pnpm add -D failed");
+  }
+}
+
 export function installShadcnComponents(components: string[]): void {
   if (components.length === 0) return;
   console.log(`Running: npx shadcn@latest add ${components.join(" ")}`);
