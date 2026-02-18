@@ -1,21 +1,19 @@
-import { isServer } from '@/utils/env.util'
+import { createIsomorphicFn } from '@tanstack/react-start'
+import { logErrorServer, logEventServer } from './analytics.server'
+import { logErrorClient, logEventClient } from './analytics.client'
 
-export async function logEvent(opts: LogEventArgs<EventName>) {
-  if (isServer()) {
-    const { logEventServer } = await import('./analytics.server')
-    return logEventServer(opts)
-  } else {
-    const { logEventClient } = await import('./analytics.client')
+export const logEvent = createIsomorphicFn()
+  .client((opts: LogEventArgs<EventName>) => {
     return logEventClient(opts)
-  }
-}
+  })
+  .server((opts: LogEventArgs<EventName>) => {
+    return logEventServer(opts)
+  })
 
-export async function logError(opts: LogErrorArgs<ErrorName>) {
-  if (isServer()) {
-    const { logErrorServer } = await import('./analytics.server')
-    return logErrorServer(opts)
-  } else {
-    const { logErrorClient } = await import('./analytics.client')
+export const logError = createIsomorphicFn()
+  .client((opts: LogErrorArgs<ErrorName>) => {
     return logErrorClient(opts)
-  }
-}
+  })
+  .server((opts: LogErrorArgs<ErrorName>) => {
+    return logErrorServer(opts)
+  })

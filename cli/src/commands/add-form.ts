@@ -1,5 +1,10 @@
 import type { Command } from "commander";
-import { addFromTanstackStack } from "../utils/github.js";
+import { blindCopyFromTanstackStackSrc } from "../utils/github.js";
+import {
+  installDeps,
+  installShadcnComponents,
+  runFormat,
+} from "../utils/terminal.js";
 
 export function registerAddForm(program: Command): void {
   program
@@ -8,13 +13,20 @@ export function registerAddForm(program: Command): void {
     .action(async () => {
       console.log("Adding form...");
 
-      await addFromTanstackStack([
-        {
-          from: "src/components/example.tsx",
-          to: "src/components/example.tsx",
-        },
+      installShadcnComponents(["switch"]);
+
+      installDeps(["@tanstack/react-form"]);
+
+      await blindCopyFromTanstackStackSrc([
+        "components/form/app-form.tsx",
+        "components/form/field.tsx",
+        "components/form/field.types.ts",
+        "components/form/switch-field.tsx",
+        // "components/form/form.md"
       ]);
-      
+
+      runFormat();
+
       console.log("Done.");
     });
 }

@@ -1,9 +1,8 @@
 import { Button } from '@/components/ui/button'
 import { logEvent } from '@/lib/analytics'
-import React from 'react'
 
 type Props = {
-  label: React.ReactNode
+  label: string
   onClick: () => void
 }
 

@@ -40,7 +40,6 @@ export function registerInit(program: Command): void {
         "features/navigation/nav-config.tsx",
 
         "utils/serverFn.util.ts",
-        "utils/env.util.ts",
 
         "middleware/auth-middleware.ts",
         "middleware/error-handler-middleware.ts",

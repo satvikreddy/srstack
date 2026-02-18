@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RouteSearchParamsRouteImport } from './routes/route-search-params'
 import { Route as RoutePendingComponentRouteImport } from './routes/route-pendingComponent'
 import { Route as RouteLoaderRouteImport } from './routes/route-loader'
+import { Route as FormRouteImport } from './routes/form'
 import { Route as ErrorRouteImport } from './routes/error'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const RouteLoaderRoute = RouteLoaderRouteImport.update({
   path: '/route-loader',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FormRoute = FormRouteImport.update({
+  id: '/form',
+  path: '/form',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ErrorRoute = ErrorRouteImport.update({
   id: '/error',
   path: '/error',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/error': typeof ErrorRoute
+  '/form': typeof FormRoute
   '/route-loader': typeof RouteLoaderRoute
   '/route-pendingComponent': typeof RoutePendingComponentRoute
   '/route-search-params': typeof RouteSearchParamsRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/error': typeof ErrorRoute
+  '/form': typeof FormRoute
   '/route-loader': typeof RouteLoaderRoute
   '/route-pendingComponent': typeof RoutePendingComponentRoute
   '/route-search-params': typeof RouteSearchParamsRoute
@@ -59,6 +67,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/error': typeof ErrorRoute
+  '/form': typeof FormRoute
   '/route-loader': typeof RouteLoaderRoute
   '/route-pendingComponent': typeof RoutePendingComponentRoute
   '/route-search-params': typeof RouteSearchParamsRoute
@@ -68,6 +77,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/error'
+    | '/form'
     | '/route-loader'
     | '/route-pendingComponent'
     | '/route-search-params'
@@ -75,6 +85,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/error'
+    | '/form'
     | '/route-loader'
     | '/route-pendingComponent'
     | '/route-search-params'
@@ -82,6 +93,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/error'
+    | '/form'
     | '/route-loader'
     | '/route-pendingComponent'
     | '/route-search-params'
@@ -90,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ErrorRoute: typeof ErrorRoute
+  FormRoute: typeof FormRoute
   RouteLoaderRoute: typeof RouteLoaderRoute
   RoutePendingComponentRoute: typeof RoutePendingComponentRoute
   RouteSearchParamsRoute: typeof RouteSearchParamsRoute
@@ -118,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RouteLoaderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/form': {
+      id: '/form'
+      path: '/form'
+      fullPath: '/form'
+      preLoaderRoute: typeof FormRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/error': {
       id: '/error'
       path: '/error'
@@ -138,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ErrorRoute: ErrorRoute,
+  FormRoute: FormRoute,
   RouteLoaderRoute: RouteLoaderRoute,
   RoutePendingComponentRoute: RoutePendingComponentRoute,
   RouteSearchParamsRoute: RouteSearchParamsRoute,

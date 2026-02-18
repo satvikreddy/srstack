@@ -4,6 +4,7 @@
   "description": "CLI tool for scaffolding TanStack Start projects with common integrations",
   "author": "Satvik Reddy",
   "license": "MIT",
+  "homepage": "https://srstack.vercel.app",
   "type": "module",
   "engines": {
     "node": ">=18.0.0"
