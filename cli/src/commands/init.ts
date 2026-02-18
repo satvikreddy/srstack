@@ -26,6 +26,19 @@ export function registerInit(program: Command): void {
       installDeps(["zod", "zustand"]);
 
       await blindCopyFromTanstackStackSrc([
+        "routes/__root.tsx",
+
+        "components/app-button.tsx",
+        "components/app-header.tsx",
+        "components/app-layout.tsx",
+        "components/app-navbar-bottom.tsx",
+        "components/app-provider.tsx",
+        "components/app-sidebar.tsx",
+        "components/app-state-provider.tsx",
+
+        "features/auth/permissions.types.ts",
+        "features/navigation/nav-config.tsx",
+
         "utils/serverFn.util.ts",
         "utils/env.util.ts",
 
@@ -39,14 +52,13 @@ export function registerInit(program: Command): void {
         "lib/analytics/analytics.types.ts",
         "lib/analytics/index.ts",
 
-        "components/app-button.tsx",
-
+        "siteConfig.ts",
         "start.ts",
       ]);
 
       await ensureFormatScript();
 
-      installShadcnComponents(["sidebar", "sonner"]);
+      installShadcnComponents(["sidebar", "sonner", "sidebar"]);
 
       runFormat();
 
