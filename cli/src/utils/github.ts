@@ -23,13 +23,25 @@ export async function addFromTanstackStack(
     from: string;
     to: string;
     overwrite?: boolean;
-  }[]
+  }[],
 ): Promise<void> {
   for (const arg of args) {
     await downloadFile(
       srStackUrl("tanstack-start/" + arg.from),
       arg.to,
-      arg.overwrite ?? false
+      arg.overwrite ?? false,
+    );
+  }
+}
+
+export async function blindCopyFromTanstackStackSrc(
+  args: string[],
+): Promise<void> {
+  for (const path of args) {
+    await downloadFile(
+      srStackUrl("tanstack-start/src/" + path),
+      "src/" + path,
+      true,
     );
   }
 }
