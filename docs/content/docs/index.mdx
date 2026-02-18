@@ -22,5 +22,25 @@ npx srstack@latest init
 
 ## Prompt
 ```markdown
-- Wrap children in _root.tsx with TooltipProvider from components/ui/tooltip.tsx
+
+### in __root.tsx
+- Wrap children with TooltipProvider from components/ui/tooltip.tsx
+- Add `notFoundComponent: () => <div>Page not found</div>,` in Route definition
+
+### in package.json
+update to `"@tanstack/devtools-vite": "^0.5.1"`
+
+### in vite.config.ts
+Add to devtools
+- `consolePiping: {},`
+
+Add to defineConfig
+`
+esbuild: {
+    pure:
+      process.env.NODE_ENV === 'production'
+        ? ['console.debug', 'console.log', 'console.info']
+        : [],
+  },
+`
 ```

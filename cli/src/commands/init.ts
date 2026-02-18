@@ -4,7 +4,11 @@ import {
   blindCopyFromTanstackStackSrc,
 } from "../utils/github.js";
 import { ensureFormatScript } from "../utils/packageJson.js";
-import { installShadcnComponents, runFormat } from "../utils/terminal.js";
+import {
+  installDeps,
+  installShadcnComponents,
+  runFormat,
+} from "../utils/terminal.js";
 
 export function registerInit(program: Command): void {
   program
@@ -19,8 +23,12 @@ export function registerInit(program: Command): void {
         },
       ]);
 
+      installDeps(["zod", "zustand"]);
+
       await blindCopyFromTanstackStackSrc([
         "utils/serverFn.util.ts",
+        "utils/env.util.ts",
+
         "middleware/auth-middleware.ts",
         "middleware/error-handler-middleware.ts",
 

@@ -27,6 +27,8 @@ export const Route = createRootRoute({
   }),
 
   shellComponent: RootDocument,
+
+  notFoundComponent: () => <div>Page not found</div>,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {

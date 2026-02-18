@@ -7,8 +7,18 @@ import tailwindcss from '@tailwindcss/vite'
 import { nitro } from 'nitro/vite'
 
 const config = defineConfig({
+  esbuild: {
+    // removes these console methods in production builds
+    pure:
+      process.env.NODE_ENV === 'production'
+        ? ['console.debug', 'console.log', 'console.info']
+        : [],
+  },
   plugins: [
-    devtools(),
+    devtools({
+      // forwards browser logs to the terminal
+      consolePiping: {},
+    }),
     nitro(),
     // this is the plugin that enables path aliases
     viteTsConfigPaths({

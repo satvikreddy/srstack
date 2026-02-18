@@ -9,9 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RouteSearchParamsRouteImport } from './routes/route-search-params'
+import { Route as RoutePendingComponentRouteImport } from './routes/route-pendingComponent'
+import { Route as RouteLoaderRouteImport } from './routes/route-loader'
 import { Route as ErrorRouteImport } from './routes/error'
 import { Route as IndexRouteImport } from './routes/index'
 
+const RouteSearchParamsRoute = RouteSearchParamsRouteImport.update({
+  id: '/route-search-params',
+  path: '/route-search-params',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoutePendingComponentRoute = RoutePendingComponentRouteImport.update({
+  id: '/route-pendingComponent',
+  path: '/route-pendingComponent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RouteLoaderRoute = RouteLoaderRouteImport.update({
+  id: '/route-loader',
+  path: '/route-loader',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ErrorRoute = ErrorRouteImport.update({
   id: '/error',
   path: '/error',
@@ -26,31 +44,80 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/error': typeof ErrorRoute
+  '/route-loader': typeof RouteLoaderRoute
+  '/route-pendingComponent': typeof RoutePendingComponentRoute
+  '/route-search-params': typeof RouteSearchParamsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/error': typeof ErrorRoute
+  '/route-loader': typeof RouteLoaderRoute
+  '/route-pendingComponent': typeof RoutePendingComponentRoute
+  '/route-search-params': typeof RouteSearchParamsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/error': typeof ErrorRoute
+  '/route-loader': typeof RouteLoaderRoute
+  '/route-pendingComponent': typeof RoutePendingComponentRoute
+  '/route-search-params': typeof RouteSearchParamsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/error'
+  fullPaths:
+    | '/'
+    | '/error'
+    | '/route-loader'
+    | '/route-pendingComponent'
+    | '/route-search-params'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/error'
-  id: '__root__' | '/' | '/error'
+  to:
+    | '/'
+    | '/error'
+    | '/route-loader'
+    | '/route-pendingComponent'
+    | '/route-search-params'
+  id:
+    | '__root__'
+    | '/'
+    | '/error'
+    | '/route-loader'
+    | '/route-pendingComponent'
+    | '/route-search-params'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ErrorRoute: typeof ErrorRoute
+  RouteLoaderRoute: typeof RouteLoaderRoute
+  RoutePendingComponentRoute: typeof RoutePendingComponentRoute
+  RouteSearchParamsRoute: typeof RouteSearchParamsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/route-search-params': {
+      id: '/route-search-params'
+      path: '/route-search-params'
+      fullPath: '/route-search-params'
+      preLoaderRoute: typeof RouteSearchParamsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/route-pendingComponent': {
+      id: '/route-pendingComponent'
+      path: '/route-pendingComponent'
+      fullPath: '/route-pendingComponent'
+      preLoaderRoute: typeof RoutePendingComponentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/route-loader': {
+      id: '/route-loader'
+      path: '/route-loader'
+      fullPath: '/route-loader'
+      preLoaderRoute: typeof RouteLoaderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/error': {
       id: '/error'
       path: '/error'
@@ -71,6 +138,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ErrorRoute: ErrorRoute,
+  RouteLoaderRoute: RouteLoaderRoute,
+  RoutePendingComponentRoute: RoutePendingComponentRoute,
+  RouteSearchParamsRoute: RouteSearchParamsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

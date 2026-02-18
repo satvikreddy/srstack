@@ -15,11 +15,10 @@ export function installDeps(deps: string[]): void {
 export function installShadcnComponents(components: string[]): void {
   if (components.length === 0) return;
   console.log(`Running: npx shadcn@latest add ${components.join(" ")}`);
-  const result = spawnSync(
-    "npx",
-    ["shadcn@latest", "add", ...components],
-    { stdio: "inherit", shell: true }
-  );
+  const result = spawnSync("npx", ["shadcn@latest", "add", ...components], {
+    stdio: "inherit",
+    shell: true,
+  });
   if (result.status !== 0) {
     throw new Error("shadcn add failed");
   }
@@ -36,6 +35,8 @@ export function runFormat(): void {
     shell: true,
   });
   if (result.status !== 0) {
-    console.warn("npm run format failed or format script not found (non-fatal)");
+    console.warn(
+      "npm run format failed or format script not found (non-fatal)",
+    );
   }
 }
