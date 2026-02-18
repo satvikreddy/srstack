@@ -17,6 +17,7 @@ export function registerAddForm(program: Command): void {
         "@tanstack/ai",
         "@tanstack/ai-client",
         "@tanstack/ai-react",
+        "@tanstack/ai-openai"
       ]);
       installDevDeps(["@tanstack/react-ai-devtools"]);
 
