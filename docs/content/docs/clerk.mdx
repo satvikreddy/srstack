@@ -1,0 +1,30 @@
+---
+title: Add Clerk
+---
+
+## create clerk project
+
+https://dashboard.clerk.com/apps/new
+
+/sessions set time to 30 or 90 days
+
+/api-keys Select tanstack start from dropdown and copy paste keys in your env
+
+If deploying on vercel, paste same in vercel env
+
+## srstack add-clerk
+
+```bash
+npx srstack@latest add-clerk
+```
+
+## Prompt
+```
+### in start.ts
+
+- add `requestMiddleware: [clerkMiddleware()],` from '@clerk/tanstack-react-start/server'
+
+### in __root.tsx
+
+- Wrap children with AppClerkProvider from app-clerk-provider.tsx
+```
