@@ -5,7 +5,7 @@ import {
 } from "../utils/github.js";
 import { installDeps } from "../utils/terminal.js";
 
-export function registerAddConvex(program: Command): void {
+export function registerAddClerk(program: Command): void {
   program
     .command("add-clerk")
     .description("Scaffold Clerk integration files into the project")
@@ -15,6 +15,7 @@ export function registerAddConvex(program: Command): void {
       await blindCopyFromTanstackStackSrc([
         "integrations/clerk/app-clerk-provider.tsx",
         "features/auth/permissions.types.ts",
+        "routes/clerk.tsx"
       ]);
 
       await addFromTanstackStack([

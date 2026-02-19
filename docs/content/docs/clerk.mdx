@@ -1,5 +1,5 @@
 ---
-title: Add Clerk
+title: Clerk
 ---
 
 ## create clerk project
@@ -27,4 +27,14 @@ npx srstack@latest add-clerk
 ### in __root.tsx
 
 - Wrap children with AppClerkProvider from app-clerk-provider.tsx
+
+### in vite.config.ts add this to alias
+`
+resolve: {
+    alias: [
+      // this is needed due to https://github.com/TanStack/router/issues/5738
+      { find: 'use-sync-external-store/shim/index.js', replacement: 'react' },
+    ],
+  },
+`
 ```

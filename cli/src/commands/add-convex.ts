@@ -1,5 +1,5 @@
 import type { Command } from "commander";
-import { addFromTanstackStack } from "../utils/github.js";
+import { addFromTanstackStack, blindCopyFromTanstackStackConvex } from "../utils/github.js";
 import { installDeps } from "../utils/terminal.js";
 
 export function registerAddConvex(program: Command): void {
@@ -9,7 +9,7 @@ export function registerAddConvex(program: Command): void {
     .action(async () => {
       console.log("Adding Convex...");
 
-      installDeps(["convex"]);
+      installDeps(["convex", "fluent-convex", "zod", "convex-helpers"]);
 
       await addFromTanstackStack([
         {
@@ -21,6 +21,14 @@ export function registerAddConvex(program: Command): void {
           to: "convex/functions.ts",
         },
       ]);
+   
+      await blindCopyFromTanstackStackConvex([
+        'schema.ts',
+        'todo.ts',
+        
+        'lib/builder.ts',
+      ])
+
       console.log("Done.");
     });
 }

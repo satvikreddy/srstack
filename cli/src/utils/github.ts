@@ -45,3 +45,15 @@ export async function blindCopyFromTanstackStackSrc(
     );
   }
 }
+
+export async function blindCopyFromTanstackStackConvex(
+  args: string[],
+) {
+  for (const path of args) {
+    await downloadFile(
+      srStackUrl("tanstack-start/convex/" + path),
+      "convex/" + path,
+      true,
+    );
+  }
+}
