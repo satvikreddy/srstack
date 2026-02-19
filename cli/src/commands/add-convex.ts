@@ -24,6 +24,7 @@ export function registerAddConvex(program: Command): void {
       await blindCopyFromTanstackStackSrc([
         "integrations/convex/app-convex-provider.tsx",
         "integrations/convex/convex.ts",
+        "routes/convex.tsx",
       ]);
 
       console.log("Done.");
