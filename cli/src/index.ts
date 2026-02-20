@@ -6,6 +6,7 @@ import { registerAddConvex } from "./commands/add-convex.js";
 import { registerInit } from "./commands/init.js";
 import { registerAddClerk } from "./commands/add-clerk.js";
 import { registerAddAi } from "./commands/add-ai.js";
+import { registerAddTable } from "./commands/add-table.js";
 
 const program = new Command();
 
@@ -16,8 +17,9 @@ program
 
 registerInit(program);
 registerAddAi(program);
-registerAddForm(program);
 registerAddClerk(program);
 registerAddConvex(program);
+registerAddForm(program);
+registerAddTable(program);
 
 program.parse(process.argv);
