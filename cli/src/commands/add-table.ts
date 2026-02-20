@@ -12,11 +12,11 @@ export function registerAddTable(program: Command): void {
       installDeps(["@tanstack/react-table"]);
 
       await blindCopyFromTanstackStackSrc([
-        "components/table/columns/base.column.ts",
-        "components/table/columns/json.column.ts",
-        "components/table/columns/number.column.ts",
-        "components/table/columns/price.column.ts",
-        "components/table/columns/text.column.ts",
+        "components/table/columns/base.column.tsx",
+        "components/table/columns/json.column.tsx",
+        "components/table/columns/number.column.tsx",
+        "components/table/columns/price.column.tsx",
+        "components/table/columns/text.column.tsx",
         "components/table/app-table.tsx",
         "components/ui/table.tsx",
         "routes/table.tsx",
