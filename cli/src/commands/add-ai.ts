@@ -6,9 +6,9 @@ import {
   runFormat,
 } from "../utils/terminal.js";
 
-export function registerAddForm(program: Command): void {
+export function registerAddAi(program: Command): void {
   program
-    .command("add-table")
+    .command("add-ai")
     .description("Add ai to your project")
     .action(async () => {
       console.log("Adding ai...");
