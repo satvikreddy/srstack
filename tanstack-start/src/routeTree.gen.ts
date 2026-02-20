@@ -14,6 +14,9 @@ import { Route as RoutePendingComponentRouteImport } from './routes/route-pendin
 import { Route as RouteLoaderRouteImport } from './routes/route-loader'
 import { Route as FormRouteImport } from './routes/form'
 import { Route as ErrorRouteImport } from './routes/error'
+import { Route as ConvexRouteImport } from './routes/convex'
+import { Route as ClerkRouteImport } from './routes/clerk'
+import { Route as AiRouteImport } from './routes/ai'
 import { Route as IndexRouteImport } from './routes/index'
 
 const RouteSearchParamsRoute = RouteSearchParamsRouteImport.update({
@@ -41,6 +44,21 @@ const ErrorRoute = ErrorRouteImport.update({
   path: '/error',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConvexRoute = ConvexRouteImport.update({
+  id: '/convex',
+  path: '/convex',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClerkRoute = ClerkRouteImport.update({
+  id: '/clerk',
+  path: '/clerk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiRoute = AiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,6 +67,9 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
+  '/clerk': typeof ClerkRoute
+  '/convex': typeof ConvexRoute
   '/error': typeof ErrorRoute
   '/form': typeof FormRoute
   '/route-loader': typeof RouteLoaderRoute
@@ -57,6 +78,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
+  '/clerk': typeof ClerkRoute
+  '/convex': typeof ConvexRoute
   '/error': typeof ErrorRoute
   '/form': typeof FormRoute
   '/route-loader': typeof RouteLoaderRoute
@@ -66,6 +90,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
+  '/clerk': typeof ClerkRoute
+  '/convex': typeof ConvexRoute
   '/error': typeof ErrorRoute
   '/form': typeof FormRoute
   '/route-loader': typeof RouteLoaderRoute
@@ -76,6 +103,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai'
+    | '/clerk'
+    | '/convex'
     | '/error'
     | '/form'
     | '/route-loader'
@@ -84,6 +114,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai'
+    | '/clerk'
+    | '/convex'
     | '/error'
     | '/form'
     | '/route-loader'
@@ -92,6 +125,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/ai'
+    | '/clerk'
+    | '/convex'
     | '/error'
     | '/form'
     | '/route-loader'
@@ -101,6 +137,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiRoute: typeof AiRoute
+  ClerkRoute: typeof ClerkRoute
+  ConvexRoute: typeof ConvexRoute
   ErrorRoute: typeof ErrorRoute
   FormRoute: typeof FormRoute
   RouteLoaderRoute: typeof RouteLoaderRoute
@@ -145,6 +184,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ErrorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/convex': {
+      id: '/convex'
+      path: '/convex'
+      fullPath: '/convex'
+      preLoaderRoute: typeof ConvexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clerk': {
+      id: '/clerk'
+      path: '/clerk'
+      fullPath: '/clerk'
+      preLoaderRoute: typeof ClerkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai': {
+      id: '/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -157,6 +217,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiRoute: AiRoute,
+  ClerkRoute: ClerkRoute,
+  ConvexRoute: ConvexRoute,
   ErrorRoute: ErrorRoute,
   FormRoute: FormRoute,
   RouteLoaderRoute: RouteLoaderRoute,
