@@ -1,3 +1,4 @@
+import AppButton from '@/components/app-button'
 import {
   AppForm,
   AppFormSubmitButton,
@@ -24,8 +25,7 @@ function RouteComponent() {
       isRequired: false,
       birthDate: undefined as Date | undefined,
       meetingTime: undefined as Date | undefined,
-      role: '',
-      fruit: null as { id: string; name: string } | null,
+      role: undefined as string | undefined,
     },
     onSubmit: ({ value }) => {
       alert(JSON.stringify(value, null, 2))
@@ -33,8 +33,8 @@ function RouteComponent() {
   })
 
   return (
-    <div>
-      <AppForm className="flex-1 space-y-4 overflow-y-auto pb-20" form={form}>
+    <div className="max-w-lg p-6">
+      <AppForm className="flex-1 space-y-4 overflow-y-auto pb-4" form={form}>
         <form.Field name="name">
           {(field) => <TextField field={field} label="Name" />}
         </form.Field>
@@ -78,12 +78,20 @@ function RouteComponent() {
       <AppFormSubscribe
         form={form}
         children={({ isSubmitDisabled, isTouched }) => (
-          <AppFormSubmitButton
-            label="Save"
-            isSubmitDisabled={isSubmitDisabled}
-            isTouched={isTouched}
-            onClick={() => form.handleSubmit()}
-          />
+          <div className="flex gap-2 sm:justify-end">
+            <AppButton
+              className="flex-1 shrink sm:flex-none sm:shrink-0"
+              label="Cancel"
+              onClick={() => {}}
+            />
+            <AppFormSubmitButton
+              className="flex-1 shrink sm:flex-none sm:shrink-0"
+              label="Save"
+              isSubmitDisabled={isSubmitDisabled}
+              isTouched={isTouched}
+              onClick={() => form.handleSubmit()}
+            />
+          </div>
         )}
       />
     </div>

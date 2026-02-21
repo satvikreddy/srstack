@@ -39,6 +39,7 @@ export function registerAddForm(program: Command): void {
         "routes/form.tsx",
 
         "components/ui/button.tsx",
+        "components/ui/calendar.tsx",
         "components/ui/combobox.tsx",
         "components/ui/field-styles.tsx",
         "components/ui/input-group.tsx",
