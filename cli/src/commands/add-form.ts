@@ -13,15 +13,28 @@ export function registerAddForm(program: Command): void {
     .action(async () => {
       console.log("Adding form...");
 
-      installShadcnComponents(["switch"]);
+      installShadcnComponents([
+        "switch",
+        "calendar",
+        "popover",
+        "textarea",
+        "select",
+        "command",
+        "combobox",
+      ]);
 
       installDeps(["@tanstack/react-form"]);
 
       await blindCopyFromTanstackStackSrc([
         "components/form/app-form.tsx",
+        "components/form/date-field.tsx",
+        "components/form/date-time-field.tsx",
         "components/form/field.tsx",
         "components/form/field.types.ts",
+        "components/form/price-field.tsx",
+        "components/form/select-field.tsx",
         "components/form/switch-field.tsx",
+        "components/form/text-field.tsx",
         // "components/form/form.md"
         "routes/form.tsx",
       ]);
