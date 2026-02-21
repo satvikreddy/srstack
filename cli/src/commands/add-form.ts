@@ -37,6 +37,13 @@ export function registerAddForm(program: Command): void {
         "components/form/text-field.tsx",
         // "components/form/form.md"
         "routes/form.tsx",
+
+        "components/ui/button.tsx",
+        "components/ui/combobox.tsx",
+        "components/ui/field-styles.tsx",
+        "components/ui/input-group.tsx",
+        "components/ui/input.tsx",
+        "components/ui/select.tsx",
       ]);
 
       runFormat();
