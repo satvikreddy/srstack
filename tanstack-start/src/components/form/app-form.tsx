@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { logEvent } from '@/lib/analytics'
 import { cn } from '@/lib/utils'
 import { ReactFormExtendedApi } from '@tanstack/react-form'
+import { toast } from 'sonner'
 
 type AppFormProps<TFormData> = {
   className?: string
@@ -29,12 +30,11 @@ export const AppForm = <TFormData,>({
 }: AppFormProps<TFormData>) => {
   return (
     <form
-      className={cn('flex-1 space-y-4 overflow-y-auto pb-20', className)}
-      onSubmit={(e) => {
-        e.preventDefault()
-        e.stopPropagation()
-        void form.handleSubmit()
-      }}
+      className={cn(
+        'flex-1 space-y-4 overflow-y-auto pb-4 px-1 pt-1',
+        className,
+      )}
+      onSubmit={form.handleSubmit}
     >
       {children}
     </form>
@@ -56,7 +56,10 @@ type AppFormSubscribeProps<TFormData> = {
     any,
     any
   >
-  children: (args: { isSubmitDisabled: boolean }) => React.ReactNode
+  children: (args: {
+    isSubmitDisabled: boolean
+    isTouched: boolean
+  }) => React.ReactNode
 }
 
 export const AppFormSubscribe = <TFormData,>({
@@ -65,13 +68,15 @@ export const AppFormSubscribe = <TFormData,>({
 }: AppFormSubscribeProps<TFormData>) => {
   return (
     <form.Subscribe
-      selector={(state: any) => [
+      selector={(state) => [
         state.canSubmit,
         state.isSubmitting,
         state.isPristine,
+        state.isTouched,
       ]}
-      children={([canSubmit, isSubmitting, isPristine]) =>
+      children={([canSubmit, isSubmitting, isPristine, isTouched]) =>
         children({
+          isTouched,
           isSubmitDisabled: isPristine || !canSubmit || isSubmitting,
         })
       }
@@ -80,14 +85,18 @@ export const AppFormSubscribe = <TFormData,>({
 }
 
 export const AppFormSubmitButton = (props: {
+  icon?: React.ReactNode
   label: string
   isSubmitDisabled: boolean
+  isTouched: boolean
   onClick: () => void
 }) => {
   return (
     <Button
+      size="lg"
       type="submit"
-      variant="outline"
+      variant={props.isTouched ? 'default' : 'outline'}
+      disabled={props.isSubmitDisabled}
       onClick={() => {
         logEvent({
           event: 'form_submit_button_clicked',
@@ -98,7 +107,20 @@ export const AppFormSubmitButton = (props: {
         props.onClick()
       }}
     >
+      {props.icon}
       {props.label}
     </Button>
   )
+}
+
+export const onAppFormSubmit = async <TResult,>(args: {
+  execute: () => Promise<TResult>
+}) => {
+  try {
+    const result = await args.execute()
+    return result
+  } catch (error) {
+    toast.error(error instanceof Error ? error.message : 'Something went wrong')
+    throw error
+  }
 }

@@ -1,4 +1,5 @@
 import { AppFieldLabel } from '@/components/form/field'
+import { AppFieldApi } from '@/components/form/field.types'
 import { Switch } from '@/components/ui/switch'
 
 interface SwitchFieldProps {

@@ -23,6 +23,7 @@ export function registerAddForm(program: Command): void {
         "components/form/field.types.ts",
         "components/form/switch-field.tsx",
         // "components/form/form.md"
+        "routes/form.tsx",
       ]);
 
       runFormat();
